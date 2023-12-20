@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'BuscaCliente.dart';
-import 'BuscaRep.dart';
+import 'package:representantev1/Representantes.dart';
 
 class HomeApp extends StatelessWidget {
-  const HomeApp({Key? key}) : super(key: key);
+  const HomeApp({Key? key, required String login, required String senha}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,36 +26,15 @@ class HomeApp extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => BuscarRep())
+                        MaterialPageRoute(builder: (context) => const Representantes())
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10.0,
-                      fixedSize: const Size(155.0, 150.0),
+                      fixedSize: const Size(170.0, 100.0),
                     ),
                     child: const Text(
-                      'Buscar por Representante',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0,
-                        fontFamily: 'sylfaen',
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const BuscaCliente())
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      elevation: 10.0,
-                      fixedSize: const Size(155.0, 150.0),
-                    ),
-                    child: const Text(
-                      'Buscar por Cliente',
+                      'Representantes',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,
