@@ -16,12 +16,13 @@ class HomeApp extends StatelessWidget {
           centerTitle: true,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -31,7 +32,10 @@ class HomeApp extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10.0,
-                      fixedSize: const Size(170.0, 100.0),
+                      fixedSize: const Size(180.0, 100.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      )
                     ),
                     child: const Text(
                       'Representantes',
