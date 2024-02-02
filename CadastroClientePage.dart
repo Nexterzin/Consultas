@@ -10,14 +10,35 @@ class CadastroClientePage extends StatefulWidget {
 class _CadastroClientePageState extends State<CadastroClientePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _nomeController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  String _botaoSelecionado = ''; // Armazena o botão selecionado
+  String _botaoSelecionado = '';
+  
+  // Listas para cada representante
+  List<String> listaClientesVT = [];
+  List<String> listaClientesVP = [];
+  List<String> listaClientesCABUKEM = [];
+  List<String> listaClientesPJM = [];
 
   @override
+  void initState() {
+    super.initState();
+    
+    // Inicializa as listas
+    listaClientesVT = [];
+    listaClientesVP = [];
+    listaClientesCABUKEM = [];
+    listaClientesPJM = [];
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro de Cliente'),
+        title: const Text(
+          'Cadastro de Cliente',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -31,20 +52,6 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor, insira o nome';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'E-mail'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o e-mail';
-                  } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                      .hasMatch(value)) {
-                    return 'Por favor, insira um e-mail válido';
                   }
                   return null;
                 },
@@ -69,7 +76,14 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                     value: 'V.P. REPRESENTAÇÃO',
                     child: Text('V.P. REPRESENTAÇÃO'),
                   ),
-                  // Adicione mais opções conforme necessário
+                  DropdownMenuItem(
+                    value: 'CABUKEM',
+                    child: Text('CABUKEM'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'PJM',
+                    child: Text('PJM'),
+                  )
                 ],
                 decoration: const InputDecoration(labelText: 'Selecionar Botão'),
               ),
@@ -79,10 +93,22 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                   if (_formKey.currentState?.validate() ?? false) {
                     // Obtenha os dados do formulário
                     final nome = _nomeController.text;
-                    final email = _emailController.text;
 
-                    // Use os dados como necessário, incluindo o botão selecionado
-                    print('Nome: $nome, E-mail: $email, Botão: $_botaoSelecionado');
+                    // Adiciona o cliente a lista correspondente do representante
+                    if (_botaoSelecionado == 'VT FISCHER'){
+                      listaClientesVT.add(nome);
+                    } else if (_botaoSelecionado == 'V.P. REPRESENTAÇÃO') {
+                      listaClientesVP.add(nome);
+                    } else if (_botaoSelecionado == 'CABUKEM') {
+                      listaClientesCABUKEM.add(nome);
+                    } else if (_botaoSelecionado == 'PJM') {
+                      listaClientesPJM.add(nome);
+                    }
+                    // Limpar os campos após o cadastro
+                    _nomeController.clear();
+                    setState(() {
+                      _botaoSelecionado = '';
+                    });
                   }
                 },
                 child: const Text('Cadastrar'),
