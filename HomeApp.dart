@@ -10,7 +10,13 @@ class HomeApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.brown,
         appBar: AppBar(
-          title: const Text('Pagina Inicial'),
+          title: const Text(
+            'Pagina Inicial',
+            style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold,
+          ),
+            ),
           elevation: 7.0,
           backgroundColor: Colors.cyan,
           centerTitle: true,
