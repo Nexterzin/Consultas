@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:representantev1/AddRep.dart';
 import 'package:representantev1/CadastroClientePage.dart';
 import 'package:representantev1/ListaClientePJMPage.dart';
+import 'package:representantev1/ListaClienteCABUKEM.dart';
+import 'package:representantev1/ListaClienteVP.dart';
+import 'package:representantev1/ListaClienteVT.dart';
 
 class Representantes extends StatefulWidget {
   const Representantes({Key? key}) : super(key: key);
@@ -17,7 +19,13 @@ class _RepresentantesState extends State<Representantes> {
       home: Scaffold(
         backgroundColor: Colors.brown,
         appBar: AppBar(
-          title: const Text('Pagina Representantes'),
+          title: const Text(
+            'Pagina Representantes',
+            style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold,
+          ),
+          ),
           elevation: 7.0,
           backgroundColor: Colors.cyan,
           centerTitle: true,
@@ -57,7 +65,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const AddRep()),
+                        MaterialPageRoute(builder: (context) => ListaClienteVT(listaClientes: [],)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -81,7 +89,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const AddRep()),
+                        MaterialPageRoute(builder: (context) => ListaClienteVP(listaClientes: [],)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -111,7 +119,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const AddRep()),
+                        MaterialPageRoute(builder: (context) => ListaClienteCABUKEM(listaClientes: [],)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -135,7 +143,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) =>  ListaClientesPJMPage()),
+                        MaterialPageRoute(builder: (context) =>  ListaClientesPJMPage(listaClientesPJM: [],)),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -149,7 +157,7 @@ class _RepresentantesState extends State<Representantes> {
                       'PJM',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 16.0,
+                        fontSize: 23.0,
                         fontFamily: 'sylfaen',
                         fontWeight: FontWeight.bold,
                       ),
