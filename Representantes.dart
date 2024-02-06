@@ -44,7 +44,7 @@ class _RepresentantesState extends State<Representantes> {
                 style: ElevatedButton.styleFrom(
                   elevation: 10.0,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
                 child: const Text(
@@ -70,7 +70,7 @@ class _RepresentantesState extends State<Representantes> {
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10.0,
-                      fixedSize: const Size(190.0, 90.0),
+                      fixedSize: const Size(160.0, 70.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -94,7 +94,7 @@ class _RepresentantesState extends State<Representantes> {
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10.0,
-                      fixedSize: const Size(190.0, 90.0),
+                      fixedSize: const Size(180.0, 70.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -124,7 +124,7 @@ class _RepresentantesState extends State<Representantes> {
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10.0,
-                      fixedSize: const Size(190.0, 90.0),
+                      fixedSize: const Size(160.0, 70.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -148,7 +148,7 @@ class _RepresentantesState extends State<Representantes> {
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 10.0,
-                      fixedSize: const Size(190.0, 90.0),
+                      fixedSize: const Size(180.0, 70.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
