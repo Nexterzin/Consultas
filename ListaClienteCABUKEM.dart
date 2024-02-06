@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ListaClienteCABUKEM extends StatelessWidget {
+class ListaClienteVP extends StatelessWidget {
   final List<String> listaClientes;
 
-  ListaClienteCABUKEM({Key? key, required this.listaClientes}) : super(key: key);
+  ListaClienteVP({Key? key, required this.listaClientes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +11,9 @@ class ListaClienteCABUKEM extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         title: const Text(
-          'Lista de Clientes - CABUKEM',
+          'Lista de Clientes - V.P. REP',
           style: TextStyle(
-            fontSize: 25.0,
+            fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),
