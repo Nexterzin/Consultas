@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'ListaClienteCABUKEM.dart';
 
 class CadastroClientePage extends StatefulWidget {
   const CadastroClientePage({Key? key}) : super(key: key);
@@ -13,20 +15,33 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
   String _botaoSelecionado = '';
   
   // Listas para cada representante
-  List<String> listaClientesVT = [];
-  List<String> listaClientesVP = [];
-  List<String> listaClientesCABUKEM = [];
-  List<String> listaClientesPJM = [];
+  List<String> ListaClientesVT = [];
+  List<String> ListaClientesVP = [];
+  List<String> ListaClientesCABUKEM = [];
+  List<String> ListaClientesPJM = [];
 
   @override
   void initState() {
     super.initState();
-    
-    // Inicializa as listas
-    listaClientesVT = [];
-    listaClientesVP = [];
-    listaClientesCABUKEM = [];
-    listaClientesPJM = [];
+    _carregarListasSalvas();
+  }
+
+  Future<void> _carregarListasSalvas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      ListaClientesCABUKEM = prefs.getStringList('ListaClientesCABUKEM') ?? [];
+      ListaClientesVP = prefs.getStringList('ListaClienteVP') ?? [];
+      ListaClientesVT = prefs.getStringList('ListaClienteVT') ?? [];
+      ListaClientesPJM = prefs.getStringList('ListaClientePJM') ?? [];
+    });
+  }
+
+  Future<void> _salvarListas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('ListaClienteCABUKEM', ListaClientesCABUKEM);
+    prefs.setStringList('ListaClienteVP', ListaClientesVP);
+    prefs.setStringList('ListaClienteVT', ListaClientesVT);
+    prefs.setStringList('ListaClientePJM', ListaClientesPJM);
   }
 
   Widget build(BuildContext context) {
@@ -96,21 +111,23 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
 
                     // Adiciona o cliente a lista correspondente do representante
                     if (_botaoSelecionado == 'VT FISCHER'){
-                      listaClientesVT.add(nome);
+                      ListaClientesVT.add(nome);
                     } else if (_botaoSelecionado == 'V.P. REPRESENTAÇÃO') {
-                      listaClientesVP.add(nome);
+                      ListaClientesVP.add(nome);
                     } else if (_botaoSelecionado == 'CABUKEM') {
-                      listaClientesCABUKEM.add(nome);
+                      ListaClientesCABUKEM.add(nome);
                     } else if (_botaoSelecionado == 'PJM') {
-                      listaClientesPJM.add(nome);
+                      ListaClientesPJM.add(nome);
                     }
-                    // Limpar os campos após o cadastro
-                    _nomeController.clear();
-                    setState(() {
-                      _botaoSelecionado = '';
-                    });
-                  }
-                },
+                    Navigator.push(
+                      context,
+                     MaterialPageRoute(builder: (context)=> ListaClienteCABUKEM(
+                      listaClientes: _botaoSelecionado == 'CABUKEM' ? ListaClientesCABUKEM : [],
+                      ),
+                      ),
+                      );
+                    };
+                  },
                 child: const Text('Cadastrar'),
               ),
             ],
