@@ -13,7 +13,7 @@ class ListaClientesPJMPage extends StatelessWidget {
         title: const Text(
           'Lista de Clientes - PJM',
           style: TextStyle(
-            fontSize: 25.0,
+            fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),
