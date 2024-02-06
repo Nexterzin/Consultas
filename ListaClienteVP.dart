@@ -11,9 +11,9 @@ class ListaClienteVP extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         title: const Text(
-          'Lista de Clientes - V.P. REPRESENTAÇÃO',
+          'Lista de Clientes - V.P. REP',
           style: TextStyle(
-            fontSize: 25.0,
+            fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),
