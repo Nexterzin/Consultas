@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ListaClienteVT extends StatelessWidget {
   final List<String> listaClientes;
 
-  ListaClienteVT({Key? key, required this.listaClientes}) : super(key: key);
+  const ListaClienteVT({Key? key, required this.listaClientes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ListaClienteVT extends StatelessWidget {
         title: const Text(
           'Lista de Clientes - VT FISCHER',
           style: TextStyle(
-            fontSize: 25.0,
+            fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),
