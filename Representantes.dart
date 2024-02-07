@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:representantev1/CadastroClientePage.dart';
-import 'package:representantev1/ListaClientePJMPage.dart';
 import 'package:representantev1/ListaClienteCABUKEM.dart';
+import 'package:representantev1/ListaClientePJMPage.dart';
 import 'package:representantev1/ListaClienteVP.dart';
 import 'package:representantev1/ListaClienteVT.dart';
 
@@ -22,9 +22,9 @@ class _RepresentantesState extends State<Representantes> {
           title: const Text(
             'Pagina Representantes',
             style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 25.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           elevation: 7.0,
           backgroundColor: Colors.cyan,
@@ -38,7 +38,7 @@ class _RepresentantesState extends State<Representantes> {
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const CadastroClientePage()),
+                    MaterialPageRoute(builder: (context) => const CadastroClientePage(listaClientes: [])),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -65,7 +65,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ListaClienteVT(listaClientes: [],)),
+                        MaterialPageRoute(builder: (context) => ListaClienteVT(listaClientes: [])),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -89,7 +89,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ListaClienteVP(listaClientes: [],)),
+                        MaterialPageRoute(builder: (context) => ListaClienteVP(listaClientes: [])),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -119,7 +119,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ListaClienteCABUKEM(listaClientes: [],)),
+                        MaterialPageRoute(builder: (context) => const ListaClienteCABUKEM()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -143,7 +143,7 @@ class _RepresentantesState extends State<Representantes> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) =>  ListaClientesPJMPage(listaClientesPJM: [],)),
+                        MaterialPageRoute(builder: (context) =>  ListaClientesPJMPage(listaClientesPJM: [])),
                       );
                     },
                     style: ElevatedButton.styleFrom(
