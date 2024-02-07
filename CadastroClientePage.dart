@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'ListaClienteCABUKEM.dart';
 
 class CadastroClientePage extends StatefulWidget {
-  const CadastroClientePage({Key? key}) : super(key: key);
+  final List<String> listaClientes;
+
+  const CadastroClientePage({Key? key, required this.listaClientes}) : super(key: key);
 
   @override
   _CadastroClientePageState createState() => _CadastroClientePageState();
@@ -13,37 +14,29 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _nomeController = TextEditingController();
   String _botaoSelecionado = '';
-  
-  // Listas para cada representante
-  List<String> ListaClientesVT = [];
-  List<String> ListaClientesVP = [];
+
+  // Lista mutável para armazenar os clientes
   List<String> ListaClientesCABUKEM = [];
+  List<String> ListaClientesVP = [];
+  List<String> ListaClientesVT = [];
   List<String> ListaClientesPJM = [];
 
   @override
   void initState() {
     super.initState();
-    _carregarListasSalvas();
+    // Inicialize a lista mutável com a lista passada
+    ListaClientesCABUKEM.addAll(widget.listaClientes);
+    ListaClientesVT.addAll(widget.listaClientes);
+    ListaClientesVP.addAll(widget.listaClientes);
+    ListaClientesPJM.addAll(widget.listaClientes);
   }
 
-  Future<void> _carregarListasSalvas() async {
+  Future<void> _salvarLista() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      ListaClientesCABUKEM = prefs.getStringList('ListaClientesCABUKEM') ?? [];
-      ListaClientesVP = prefs.getStringList('ListaClienteVP') ?? [];
-      ListaClientesVT = prefs.getStringList('ListaClienteVT') ?? [];
-      ListaClientesPJM = prefs.getStringList('ListaClientePJM') ?? [];
-    });
+    prefs.setStringList('ListaClientesCABUKEM', ListaClientesCABUKEM);
   }
 
-  Future<void> _salvarListas() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('ListaClienteCABUKEM', ListaClientesCABUKEM);
-    prefs.setStringList('ListaClienteVP', ListaClientesVP);
-    prefs.setStringList('ListaClienteVT', ListaClientesVT);
-    prefs.setStringList('ListaClientePJM', ListaClientesPJM);
-  }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -72,11 +65,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                 },
               ),
               const SizedBox(height: 16),
-              // Campo de seleção do botão
               DropdownButtonFormField<String>(
-                value: _botaoSelecionado.isNotEmpty
-                    ? _botaoSelecionado
-                    : null, // Corrigindo o valor inicial
+                value: _botaoSelecionado.isNotEmpty ? _botaoSelecionado : null,
                 onChanged: (value) {
                   setState(() {
                     _botaoSelecionado = value!;
@@ -104,12 +94,9 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState?.validate() ?? false) {
-                    // Obtenha os dados do formulário
                     final nome = _nomeController.text;
-
-                    // Adiciona o cliente a lista correspondente do representante
                     if (_botaoSelecionado == 'VT FISCHER'){
                       ListaClientesVT.add(nome);
                     } else if (_botaoSelecionado == 'V.P. REPRESENTAÇÃO') {
@@ -119,15 +106,10 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                     } else if (_botaoSelecionado == 'PJM') {
                       ListaClientesPJM.add(nome);
                     }
-                    Navigator.push(
-                      context,
-                     MaterialPageRoute(builder: (context)=> ListaClienteCABUKEM(
-                      listaClientes: _botaoSelecionado == 'CABUKEM' ? ListaClientesCABUKEM : [],
-                      ),
-                      ),
-                      );
-                    };
-                  },
+                   
+                    await _salvarLista();
+                  }
+                },
                 child: const Text('Cadastrar'),
               ),
             ],
