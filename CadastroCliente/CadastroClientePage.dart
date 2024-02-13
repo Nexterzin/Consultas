@@ -16,19 +16,25 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
 
   // Lista mutável para armazenar os clientes
   List<String> ListaClientesCABUKEM = [];
+  List<String> ListaClientesPJMPage = [];
+  List<String> ListaClientesVT = [];
+  List<String> ListaClientesVP = [];
 
   @override
   void initState() {
     super.initState();
     // Carregar a lista de clientes do SharedPreferences ao iniciar a tela
-    _carregarClientesCABUKEM();
+    _carregarClientes();
   }
 
-  Future<void> _carregarClientesCABUKEM() async {
+  Future<void> _carregarClientes() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       // Carregar os clientes do SharedPreferences
       ListaClientesCABUKEM = prefs.getStringList('ListaClientesCABUKEM') ?? [];
+      ListaClientesPJMPage = prefs.getStringList('ListaClientesPJMPage') ?? [];
+      ListaClientesVT = prefs.getStringList('ListaClientesVT') ?? [];
+      ListaClientesVP = prefs.getStringList('ListaClientesVP') ?? [];
     });
   }
 
@@ -36,20 +42,36 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // Adicionar o novo cliente à lista
     setState(() {
-      ListaClientesCABUKEM.add(_nomeController.text);
+      if (_botaoSelecionado == 'CABUKEM') {
+        ListaClientesCABUKEM.add(_nomeController.text);
+        prefs.setStringList('ListaClientesCABUKEM', ListaClientesCABUKEM);
+        print('Cliente adicionado com sucesso a lista do representante CABUKEM: $ListaClientesCABUKEM');
+      } else if (_botaoSelecionado == 'PJM') {
+        ListaClientesPJMPage.add(_nomeController.text);
+        prefs.setStringList('ListaClientePJMPage', ListaClientesPJMPage);
+        print('Cliente adicionado com sucesso a lista do representante PJM: $ListaClientesPJMPage');
+      } else if (_botaoSelecionado == 'VT FISCHER') {
+        ListaClientesVT.add(_nomeController.text);
+        prefs.setStringList('ListaClientesVT', ListaClientesVT);
+        print('Cliente adicionado com sucesso a lista do representante VT: $ListaClientesVT');
+      } else if (_botaoSelecionado == 'V.P. REPRESENTAÇÃO'); {
+        ListaClientesVP.add(_nomeController.text);
+        prefs.setStringList('ListaClientesVP', ListaClientesVP);
+        print('Cliente adicionado com sucesso a lista do representante VP: $ListaClientesVP');
+      }
     });
     // Salvar a lista atualizada no SharedPreferences
-    prefs.setStringList('ListaClientesCABUKEM', ListaClientesCABUKEM);
-    // Limpar o campo de texto após adicionar o cliente
     _nomeController.clear();
+    // Limpar o campo de texto após adicionar o cliente
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         title: const Text(
-          'Cadastro de Cliente',
+          '   Cadastro de Cliente',
           style: TextStyle(
             fontSize: 25.0,
             fontWeight: FontWeight.bold,
@@ -78,6 +100,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                 onChanged: (value) {
                   setState(() {
                     _botaoSelecionado = value!;
+                    print('Botão selecionado: $_botaoSelecionado');
                   });
                 },
                 items: [

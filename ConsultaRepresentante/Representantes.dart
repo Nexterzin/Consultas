@@ -15,8 +15,7 @@ class Representantes extends StatefulWidget {
 class _RepresentantesState extends State<Representantes> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.brown,
         appBar: AppBar(
           title: const Text(
@@ -68,8 +67,7 @@ class _RepresentantesState extends State<Representantes> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) =>
-                                ListaClienteVT(listaClientes: [])),
+                            builder: (context) => ListaClientesVT()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -94,8 +92,7 @@ class _RepresentantesState extends State<Representantes> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) =>
-                                ListaClienteVP(listaClientes: [])),
+                            builder: (context) => const ListaClientesVP()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -151,8 +148,7 @@ class _RepresentantesState extends State<Representantes> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) =>
-                                ListaClientesPJMPage(listaClientesPJM: [])),
+                            builder: (context) => const ListaClientePJMPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -178,7 +174,6 @@ class _RepresentantesState extends State<Representantes> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

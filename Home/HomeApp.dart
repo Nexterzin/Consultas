@@ -6,8 +6,7 @@ class HomeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.brown,
         appBar: AppBar(
           title: const Text(
@@ -59,7 +58,6 @@ class HomeApp extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

@@ -15,12 +15,12 @@ class _ListaClienteCABUKEMState extends State<ListaClienteCABUKEM> {
   @override
   void initState() {
     super.initState();
-    _carregarClientesCABUKEM();
+    _carregarClientes();
   }
 // Carregar os clientes CABUKEM ao iniciar a tela
 
   // Função para carregar os clientes CABUKEM do SharedPreferences
-  Future<void> _carregarClientesCABUKEM() async {
+  Future<void> _carregarClientes() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey('ListaClientesCABUKEM')) {
       setState(() {

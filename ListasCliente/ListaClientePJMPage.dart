@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ListaClientesPJMPage extends StatelessWidget {
-  final List<String> listaClientesPJM;
+class ListaClientePJMPage extends StatefulWidget {
+  const ListaClientePJMPage({Key? key}) : super(key: key);
 
-  ListaClientesPJMPage({Key? key, required this.listaClientesPJM})
-      : super(key: key);
+  @override
+  _ListaClientePJMPageState createState() => _ListaClientePJMPageState();
+}
+
+class _ListaClientePJMPageState extends State<ListaClientePJMPage> {
+  // ignore: unused_local_variable, non_constant_identifier_names
+  List<String> ListaClientePJMPage = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarClientes();
+  }
+  // Carregar os clientes CABUKEM ao iniciar a tela
+
+  // Função para carregar os clientes CABUKEM do SharedPreferences
+  Future<void> _carregarClientes() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('ListaClientePJMPage')) {
+      setState(() {
+        ListaClientePJMPage = prefs.getStringList('ListaClientePJMPage')!;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +45,13 @@ class ListaClientesPJMPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: listaClientesPJM.length,
+          itemCount: ListaClientePJMPage.length,
           itemBuilder: (context, index) {
             return Card(
               elevation: 5.0,
               margin: const EdgeInsets.symmetric(vertical: 8.0),
               child: ListTile(
-                title: Text(listaClientesPJM[index]),
+                title: Text(ListaClientePJMPage[index]),
                 // Adicione outros widgets ou informações do cliente conforme necessário
               ),
             );
