@@ -20,10 +20,10 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
   List<String> ListaClientesVT = [];
   List<String> ListaClientesVP = [];
 
+  // Carregar a lista de clientes do SharedPreferences ao iniciar a tela
   @override
   void initState() {
     super.initState();
-    // Carregar a lista de clientes do SharedPreferences ao iniciar a tela
     _carregarClientes();
   }
 
