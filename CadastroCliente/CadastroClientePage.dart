@@ -20,10 +20,10 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
   List<String> ListaClientesVT = [];
   List<String> ListaClientesVP = [];
 
-  // Carregar a lista de clientes do SharedPreferences ao iniciar a tela
   @override
   void initState() {
     super.initState();
+    // Carregar a lista de clientes do SharedPreferences ao iniciar a tela
     _carregarClientes();
   }
 
@@ -54,7 +54,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
         ListaClientesVT.add(_nomeController.text);
         prefs.setStringList('ListaClientesVT', ListaClientesVT);
         print('Cliente adicionado com sucesso a lista do representante VT: $ListaClientesVT');
-      } else if (_botaoSelecionado == 'V.P. REPRESENTAÇÃO'); {
+      } else if (_botaoSelecionado == 'V.P. REPRESENTAÇÃO') {
         ListaClientesVP.add(_nomeController.text);
         prefs.setStringList('ListaClientesVP', ListaClientesVP);
         print('Cliente adicionado com sucesso a lista do representante VP: $ListaClientesVP');
