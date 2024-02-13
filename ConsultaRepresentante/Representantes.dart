@@ -59,6 +59,7 @@ class _RepresentantesState extends State<Representantes> {
                   textAlign: TextAlign.center,
                 ),
               ),
+              // Vai para a pagina de adicionar clientes.
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
